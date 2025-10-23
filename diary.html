@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vault-Tec Diary</title>
+  <link rel="stylesheet" href="vault-tec.css">
+  <link rel="icon" type="image/png" href="favicon].png">
+  <style>
+    @font-face { font-family: 'Monofonto'; src: url('Monofonto.ttf') format('truetype'); }
+    body { margin:0; background:black; font-family:'Monofonto', monospace; color:#39FF14; }
+    .navbar { display:flex; justify-content:center; align-items:center; background:#111; padding:14px 0; position:fixed; top:0; width:100%; z-index:1000; }
+    .navbar a { color:#39FF14; text-decoration:none; padding:12px 20px; font-size:1.1em; white-space:nowrap; }
+    .navbar a:not(:last-child) { margin-right:20px; }
+    .content { padding-top:120px; display:flex; flex-direction:column; align-items:center; }
+    select, textarea, button { background:black; color:#39FF14; border:1px solid #39FF14; padding:8px; font-family:'Monofonto', monospace; margin:10px 0; width:300px; }
+    button:hover { background:#222; }
+    #userDisplay { position:absolute; top:10px; right:20px; }
+  </style>
+</head>
+<body onload="initializeDiary();">
+  <div class="navbar">
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="VGhlIE92ZXJzZWVyIGJldHJheWVkIHVz.html">Register a Vault</a>
+    <a href="contact.html">Contact</a>
+    <a href="diary.html">Diary</a>
+    <div id="userDisplay"></div>
+  </div>
+
+  <div class="content">
+    <h1>|Vault-Tec Diary|</h1>
+    <label for="entrySelect">Select Entry:</label>
+    <select id="entrySelect" onchange="showEntry()"></select><br>
+
+    <textarea id="diaryArea" placeholder="Select an entry above..." rows="8"></textarea><br>
+    <button onclick="saveEntry()">Save Entry</button>
+  </div>
+
+  <!-- Include placeholder entries -->
+  <script src="diary-entries.js"></script>
+  <script src="vault-tec.js"></script>
+  <script>
+    function initializeDiary() {
+      const username = sessionStorage.getItem("loggedInUser");
+      if(!username) { alert("Please log in first."); return; }
+      loggedInUser = username;
+      document.getElementById("userDisplay").textContent = username;
+
+      // Ensure diary entries exist for this user
+      if(!diaryEntries[loggedInUser]) {
+        alert("No diary entries found for this user.");
+        return;
+      }
+
+      // Populate dropdown with all entries
+      const entrySelect = document.getElementById("entrySelect");
+      entrySelect.innerHTML = "";
+      diaryEntries[loggedInUser].forEach((entry, idx) => {
+        const option = document.createElement("option");
+        option.value = idx;
+        option.textContent = `Entry ${idx + 1}`;
+        entrySelect.appendChild(option);
+      });
+
+      // Display first entry by default
+      if(diaryEntries[loggedInUser].length > 0) {
+        entrySelect.selectedIndex = 0;
+        showEntry();
+      }
+
+      // Start flicker if corrupted user
+      if(loggedInUser === "[COrRupteD Us3r]") startFlicker();
+    }
+
+    function showEntry() {
+      const idx = parseInt(document.getElementById("entrySelect").value);
+      if(isNaN(idx)) return;
+      document.getElementById("diaryArea").value = diaryEntries[loggedInUser][idx].text;
+    }
+
+    function saveEntry() {
+      const idx = parseInt(document.getElementById("entrySelect").value);
+      diaryEntries[loggedInUser][idx].text = document.getElementById("diaryArea").value;
+      alert("Entry saved!");
+    }
+
+    // Flicker effect for corrupted user
+    let flickerInterval = null;
+    function startFlicker() {
+      const body = document.body;
+      let darker = true;
+      flickerInterval = setInterval(() => {
+        body.style.backgroundColor = darker ? "#000000" : "#111111";
+        darker = !darker;
+      }, 300);
+
+      // Stop after full loop (6s), restart after 5 minutes
+      setTimeout(() => {
+        clearInterval(flickerInterval);
+        body.style.backgroundColor = "#000000";
+        setTimeout(startFlicker, 300000);
+      }, 6000);
+    }
+  </script>
+</body>
+</html>

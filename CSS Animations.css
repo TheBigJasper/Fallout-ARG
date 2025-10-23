@@ -1,0 +1,28 @@
+@keyframes glitch {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, 0); }
+  80% { transform: translate(1px, 1px); }
+  100% { transform: translate(0, 0); }
+}
+
+.glitch {
+  display: inline-block;
+  animation: glitch 0.2s infinite;
+  color: #39FF14;
+}
+@keyframes crt {
+  0%, 100% { opacity: 1; transform: translateY(0); }
+  10%, 30%, 50%, 70%, 90% { opacity: 0.9; transform: translateY(1px); }
+}
+
+.crt {
+  display: inline-block;
+  animation: crt 0.15s infinite;
+  color: #39FF14;
+  text-shadow:
+    0 0 2px #39FF14,
+    0 0 4px #39FF14,
+    0 0 6px #39FF14;
+}
