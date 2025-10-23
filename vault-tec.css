@@ -1,0 +1,93 @@
+/* Vault-Tec Terminal Theme */
+@font-face {
+  font-family: 'Monofonto';
+  src: url('Monofonto.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  background-color: black;
+  font-family: 'Monofonto', monospace;
+  color: #39FF14;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111;
+  padding: 14px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar a {
+  color: #39FF14;
+  text-decoration: none;
+  padding: 12px 20px;
+  font-size: 1.1em;
+}
+
+.navbar a:not(:last-child) {
+  margin-right: 20px;
+}
+
+.content {
+  padding-top: 80px;
+  text-align: center;
+}
+
+/* Diary Terminal */
+#diaryArea, #entriesArea {
+  background-color: #000;
+  color: #39FF14;
+  border: none;
+  width: 80%;
+  height: 300px;
+  margin: 20px auto;
+  display: block;
+  padding: 10px;
+  font-family: 'Monofonto', monospace;
+  font-size: 1em;
+  resize: none;
+  overflow-y: auto;
+  #flickerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999; /* make sure it's above everything */
+  background-color: #000000; /* dark shade */
+}
+
+}
+
+/* Glitchy text effect for corrupted user */
+.corrupted {
+  animation: glitchText 2s infinite;
+}
+
+@keyframes glitchText {
+  0% { text-shadow: 2px 0 #39FF14, -2px 2px #33ff00; }
+  20% { text-shadow: -2px -1px #33ff00, 2px 1px #39FF14; }
+  40% { text-shadow: 1px -2px #33ff00, -1px 2px #39FF14; }
+  60% { text-shadow: -1px 2px #33ff00, 1px -2px #39FF14; }
+  80% { text-shadow: 2px 1px #33ff00, -2px -1px #39FF14; }
+  100% { text-shadow: 0 0 #39FF14; }
+}
+
+/* Flicker overlay for Morse effect */
+#flickerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  pointer-events: none;
+  z-index: 999;
+}
