@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | Vault-Tec Corporation</title>
+  <link rel="icon" type="image/png" href="favicon].png">
+
+  <!-- Monofonto font -->
+  <style>
+    @font-face {
+      font-family: 'Monofonto';
+      src: url('Monofonto.ttf') format('truetype');
+    }
+
+    body {
+      margin: 0;
+      background-color: black;
+      font-family: 'Monofonto', monospace;
+      color: #39FF14;
+    }
+
+    /* Top Navigation Bar */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #111;
+      padding: 14px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: #39FF14;
+      text-decoration: none;
+      padding: 12px 20px;
+      font-size: 1.1em;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .navbar a:not(:last-child) {
+      margin-right: 20px;
+    }
+
+    /* Typing effect container */
+    .typing-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .typing-wrapper span {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #39FF14; /* single blinking cursor */
+      animation: typing 1.5s steps(15, end) forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      0%, 50%, 100% { border-color: #39FF14; }
+      25%, 75% { border-color: transparent; }
+    }
+
+    /* Add spacing below navbar */
+    .content {
+      padding-top: 80px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="typing-wrapper">
+      <a href="home.html"><span>Home</span></a>
+      <a href="about.html"><span>About</span></a>
+      <a href="VGhlIE92ZXJzZWVyIGJldHJheWVkIHVz.html"><span>Register a Vault</span></a>
+      <a href="contact.html"><span>Contact</span></a>
+      <a href="diary.html"><span>Diary</span></a>
+      <a href="log-in.html"><span>Log-In</span></a>
+    </div>
+  </div>
+
+<body>
